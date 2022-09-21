@@ -22,7 +22,7 @@ endif
 
 
 SRC_FILE=src/foo.c
-TARGET=src/foo
+TARGET=src/app
 
 C_COMPILER=gcc
 CLANG_COMPILER=clang
@@ -81,5 +81,5 @@ run:
 
 clean:
 	$(CLEANUP) $(TARGET1)
-	$(CLEANUP) $(TARGET)
+#	$(CLEANUP) $(TARGET)
 
