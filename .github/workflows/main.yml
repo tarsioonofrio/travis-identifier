@@ -2,9 +2,9 @@ name: C/C++ CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ main ]
 
 jobs:
   build:
@@ -13,5 +13,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: make
+    - name: install cppcheck valgrind
+      run: sudo apt-get install cppcheck valgrind
+    - name: make apps
       run: make
+    - name: make cov
+      run: make cov
+    - name: make sanitize
+      run: make sanitize
+    - name: make valgrind
+      run: make valgrind
+    - name: make cppcheck
+      run: make cppcheck
+      
+    
