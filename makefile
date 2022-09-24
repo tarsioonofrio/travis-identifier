@@ -61,25 +61,25 @@ compile:
 	$(C_COMPILER) $(CFLAGS) $(INC_DIRS) $(SRC_FILES1) -o $(TARGET1)
 
 sanitize:
-	$(CLANG_COMPILER) $(CFLAGS) -fsanitize=address $(SRC_FILE) -o $(TARGET)
-	./$(TARGET) -v
+	$(CLANG_COMPILER) $(CFLAGS) -fsanitize=address $(INC_DIRS) $(SRC_FILES1) -o $(TARGET1)
+	./$(TARGET1) -v
 
 cov:
-	$(C_COMPILER) $(CFLAGS) -fprofile-arcs -ftest-coverage $(SRC_FILE) -o $(TARGET)
-	./$(TARGET) -v
-	gcov -b $(SRC_FILE)
+	$(C_COMPILER) $(CFLAGS) -fprofile-arcs -ftest-coverage $(INC_DIRS) $(SRC_FILES1) -o $(TARGET1)
+	./$(TARGET1) -v
+	gcov -b $(SRC_FILES1)
 	
 valgrind:
-	gcc -g -Wall -Wfatal-errors $(SRC_FILE) -o $(TARGET)
-	valgrind --leak-check=full --show-leak-kinds=all ./$(TARGET) -v 
+	gcc -g -Wall -Wfatal-errors $(INC_DIRS) $(SRC_FILES1) -o $(TARGET1)
+	valgrind --leak-check=full --show-leak-kinds=all ./$(TARGET1) -v 
 	
 cppcheck: 
-	cppcheck --enable=all --suppress=missingIncludeSystem $(SRC_FILE) $(TARGET)
+	cppcheck --enable=all --suppress=missingIncludeSystem $(INC_DIRS) $(SRC_FILES1) -o $(TARGET1)
 
 run:
 	./$(TARGET1) -v
 
 clean:
 	$(CLEANUP) $(TARGET1)
-	$(CLEANUP) $(TARGET)
+#	$(CLEANUP) $(TARGET)
 
