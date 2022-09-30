@@ -20,9 +20,15 @@ else
 	TARGET_EXTENSION=.out
 endif
 
+SRC_ROOT=src-t1
+SRC_FILE=src-t1/quick_sort.c src-t1/merge_sort.c src-t1/heap_sort.c src-t1/selection_sort.c src-t1/insertion_sort.c src-t1/bubble_sort.c src-t1/radix_sort.c src-t1/counting_sort.c src-t1/sort.c
+TARGET=src-t1/sort
+SRC_TEST=test-t1
 
-SRC_FILE=src/foo.c
-TARGET=src/foo
+#SRC_ROOT=src
+#SRC_TEST=test
+#SRC_FILE=src/foo.c
+#TARGET=src/foo
 
 C_COMPILER=gcc
 CLANG_COMPILER=clang
@@ -50,10 +56,10 @@ SRC_FILES1=\
   $(UNITY_ROOT)/src/unity.c \
   $(UNITY_ROOT)/extras/fixture/src/unity_fixture.c \
   $(SRC_FILE) \
-  test/TestFoo.c \
-  test/test_runners/TestFoo_Runner.c \
-  test/test_runners/all_tests.c
-INC_DIRS=-Isrc -I$(UNITY_ROOT)/src -I$(UNITY_ROOT)/extras/fixture/src
+  $(SRC_TEST)/TestFoo.c \
+  $(SRC_TEST)/test_runners/TestFoo_Runner.c \
+  $(SRC_TEST)/test_runners/all_tests.c
+INC_DIRS=-I$(SRC_ROOT) -I$(UNITY_ROOT)/src -I$(UNITY_ROOT)/extras/fixture/src
 
 all: clean compile run
 
