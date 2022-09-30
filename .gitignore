@@ -2,3 +2,7 @@
 *.out
 
 *.gcno
+
+.idea/
+
+cmake-build-debug/
