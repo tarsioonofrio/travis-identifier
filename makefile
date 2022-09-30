@@ -20,10 +20,10 @@ else
 	TARGET_EXTENSION=.out
 endif
 
-SRC_ROOT=src-t1
-SRC_FILE=src-t1/quick_sort.c src-t1/merge_sort.c src-t1/heap_sort.c src-t1/selection_sort.c src-t1/insertion_sort.c src-t1/bubble_sort.c src-t1/radix_sort.c src-t1/counting_sort.c src-t1/sort.c
-TARGET=src-t1/sort
-SRC_TEST=test-t1
+SRC_ROOT=src
+SRC_FILE=src/quick_sort.c src/merge_sort.c src/heap_sort.c src/selection_sort.c src/insertion_sort.c src/bubble_sort.c src/radix_sort.c src/counting_sort.c src/sort.c
+TARGET=src/sort
+SRC_TEST=test
 
 #SRC_ROOT=src
 #SRC_TEST=test
