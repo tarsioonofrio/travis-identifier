@@ -6,674 +6,1178 @@ TEST_GROUP(Foo);
 TEST_SETUP(Foo){}
 TEST_TEAR_DOWN(Foo){}
 
-TEST(Foo, basic_COUNTING_On_INT_0)
+TEST(Foo, basic__COUNTING_On_INT_0_array)
 {
-	int array[] = {4, 3, 2, 1};
-	int out[] = {1, 2, 3, 4};
+	int array_in[] = {4, 3, 2, 1};
+	int array_out[] = {1, 2, 3, 4};
 	char type[] = "On";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, COUNTING);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 0);
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, COUNTING);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
 }
 
-
-TEST(Foo, basic_RADIX_On_INT_0)
+TEST(Foo, basic__COUNTING_On_INT_0_status)
 {
-	int array[] = {4, 3, 2, 1};
-	int out[] = {1, 2, 3, 4};
+	int array_in[] = {4, 3, 2, 1};
 	char type[] = "On";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, RADIX);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, COUNTING);
 	TEST_ASSERT_EQUAL(status, 0);
 }
 
 
-TEST(Foo, basic_BUBBLE_On2_INT_0)
+TEST(Foo, basic__RADIX_On_INT_0_array)
 {
-	int array[] = {4, 3, 2, 1};
-	int out[] = {1, 2, 3, 4};
+	int array_in[] = {4, 3, 2, 1};
+	int array_out[] = {1, 2, 3, 4};
+	char type[] = "On";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, RADIX);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, basic__RADIX_On_INT_0_status)
+{
+	int array_in[] = {4, 3, 2, 1};
+	char type[] = "On";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, RADIX);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, basic__BUBBLE_On2_INT_0_array)
+{
+	int array_in[] = {4, 3, 2, 1};
+	int array_out[] = {1, 2, 3, 4};
 	char type[] = "On2";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, BUBBLE);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 0);
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, BUBBLE);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
 }
 
-
-TEST(Foo, basic_INSERTION_On2_INT_0)
+TEST(Foo, basic__BUBBLE_On2_INT_0_status)
 {
-	int array[] = {4, 3, 2, 1};
-	int out[] = {1, 2, 3, 4};
+	int array_in[] = {4, 3, 2, 1};
 	char type[] = "On2";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, INSERTION);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, BUBBLE);
 	TEST_ASSERT_EQUAL(status, 0);
 }
 
 
-TEST(Foo, basic_SELECTION_On2_INT_0)
+TEST(Foo, basic__INSERTION_On2_INT_0_array)
 {
-	int array[] = {4, 3, 2, 1};
-	int out[] = {1, 2, 3, 4};
+	int array_in[] = {4, 3, 2, 1};
+	int array_out[] = {1, 2, 3, 4};
 	char type[] = "On2";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, SELECTION);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, INSERTION);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, basic__INSERTION_On2_INT_0_status)
+{
+	int array_in[] = {4, 3, 2, 1};
+	char type[] = "On2";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, INSERTION);
 	TEST_ASSERT_EQUAL(status, 0);
 }
 
 
-TEST(Foo, basic_HEAP_Onlogn_INT_0)
+TEST(Foo, basic__SELECTION_On2_INT_0_array)
 {
-	int array[] = {4, 3, 2, 1};
-	int out[] = {1, 2, 3, 4};
+	int array_in[] = {4, 3, 2, 1};
+	int array_out[] = {1, 2, 3, 4};
+	char type[] = "On2";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, SELECTION);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, basic__SELECTION_On2_INT_0_status)
+{
+	int array_in[] = {4, 3, 2, 1};
+	char type[] = "On2";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, SELECTION);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, basic__HEAP_Onlogn_INT_0_array)
+{
+	int array_in[] = {4, 3, 2, 1};
+	int array_out[] = {1, 2, 3, 4};
 	char type[] = "Onlogn";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, HEAP);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 0);
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, HEAP);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
 }
 
-
-TEST(Foo, basic_MERGE_Onlogn_INT_0)
+TEST(Foo, basic__HEAP_Onlogn_INT_0_status)
 {
-	int array[] = {4, 3, 2, 1};
-	int out[] = {1, 2, 3, 4};
+	int array_in[] = {4, 3, 2, 1};
 	char type[] = "Onlogn";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, MERGE);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, HEAP);
 	TEST_ASSERT_EQUAL(status, 0);
 }
 
 
-TEST(Foo, basic_QUICK_Onlogn_INT_0)
+TEST(Foo, basic__MERGE_Onlogn_INT_0_array)
 {
-	int array[] = {4, 3, 2, 1};
-	int out[] = {1, 2, 3, 4};
+	int array_in[] = {4, 3, 2, 1};
+	int array_out[] = {1, 2, 3, 4};
 	char type[] = "Onlogn";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, QUICK);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, MERGE);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, basic__MERGE_Onlogn_INT_0_status)
+{
+	int array_in[] = {4, 3, 2, 1};
+	char type[] = "Onlogn";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, MERGE);
 	TEST_ASSERT_EQUAL(status, 0);
 }
 
 
-TEST(Foo, type_algo_upper_COUNTING_ON_INT_1)
+TEST(Foo, basic__QUICK_Onlogn_INT_0_array)
 {
-	int array[] = {4, 3, 2, 1};
-	int out[] = {4, 3, 2, 1};
+	int array_in[] = {4, 3, 2, 1};
+	int array_out[] = {1, 2, 3, 4};
+	char type[] = "Onlogn";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, QUICK);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, basic__QUICK_Onlogn_INT_0_status)
+{
+	int array_in[] = {4, 3, 2, 1};
+	char type[] = "Onlogn";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, QUICK);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, type_algo_upper__COUNTING_ON_INT_1_array)
+{
+	int array_in[] = {4, 3, 2, 1};
+	int array_out[] = {4, 3, 2, 1};
 	char type[] = "on";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, COUNTING);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 1);
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, COUNTING);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
 }
 
-
-TEST(Foo, type_algo_upper_RADIX_ON_INT_1)
+TEST(Foo, type_algo_upper__COUNTING_ON_INT_1_status)
 {
-	int array[] = {4, 3, 2, 1};
-	int out[] = {4, 3, 2, 1};
+	int array_in[] = {4, 3, 2, 1};
 	char type[] = "on";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, RADIX);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, COUNTING);
 	TEST_ASSERT_EQUAL(status, 1);
 }
 
 
-TEST(Foo, type_algo_upper_BUBBLE_ON2_INT_1)
+TEST(Foo, type_algo_upper__RADIX_ON_INT_1_array)
 {
-	int array[] = {4, 3, 2, 1};
-	int out[] = {4, 3, 2, 1};
-	char type[] = "on2";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, BUBBLE);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 1);
-}
-
-
-TEST(Foo, type_algo_upper_INSERTION_ON2_INT_1)
-{
-	int array[] = {4, 3, 2, 1};
-	int out[] = {4, 3, 2, 1};
-	char type[] = "on2";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, INSERTION);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 1);
-}
-
-
-TEST(Foo, type_algo_upper_SELECTION_ON2_INT_1)
-{
-	int array[] = {4, 3, 2, 1};
-	int out[] = {4, 3, 2, 1};
-	char type[] = "on2";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, SELECTION);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 1);
-}
-
-
-TEST(Foo, type_algo_upper_HEAP_ONLOGN_INT_1)
-{
-	int array[] = {4, 3, 2, 1};
-	int out[] = {4, 3, 2, 1};
-	char type[] = "onlogn";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, HEAP);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 1);
-}
-
-
-TEST(Foo, type_algo_upper_MERGE_ONLOGN_INT_1)
-{
-	int array[] = {4, 3, 2, 1};
-	int out[] = {4, 3, 2, 1};
-	char type[] = "onlogn";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, MERGE);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 1);
-}
-
-
-TEST(Foo, type_algo_upper_QUICK_ONLOGN_INT_1)
-{
-	int array[] = {4, 3, 2, 1};
-	int out[] = {4, 3, 2, 1};
-	char type[] = "onlogn";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, QUICK);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 1);
-}
-
-
-TEST(Foo, type_algo_lower_COUNTING_on_INT_1)
-{
-	int array[] = {4, 3, 2, 1};
-	int out[] = {4, 3, 2, 1};
+	int array_in[] = {4, 3, 2, 1};
+	int array_out[] = {4, 3, 2, 1};
 	char type[] = "on";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, COUNTING);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 1);
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, RADIX);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
 }
 
-
-TEST(Foo, type_algo_lower_RADIX_on_INT_1)
+TEST(Foo, type_algo_upper__RADIX_ON_INT_1_status)
 {
-	int array[] = {4, 3, 2, 1};
-	int out[] = {4, 3, 2, 1};
+	int array_in[] = {4, 3, 2, 1};
 	char type[] = "on";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, RADIX);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, RADIX);
 	TEST_ASSERT_EQUAL(status, 1);
 }
 
 
-TEST(Foo, type_algo_lower_BUBBLE_on2_INT_1)
+TEST(Foo, type_algo_upper__BUBBLE_ON2_INT_1_array)
 {
-	int array[] = {4, 3, 2, 1};
-	int out[] = {4, 3, 2, 1};
+	int array_in[] = {4, 3, 2, 1};
+	int array_out[] = {4, 3, 2, 1};
 	char type[] = "on2";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, BUBBLE);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 1);
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, BUBBLE);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
 }
 
-
-TEST(Foo, type_algo_lower_INSERTION_on2_INT_1)
+TEST(Foo, type_algo_upper__BUBBLE_ON2_INT_1_status)
 {
-	int array[] = {4, 3, 2, 1};
-	int out[] = {4, 3, 2, 1};
+	int array_in[] = {4, 3, 2, 1};
 	char type[] = "on2";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, INSERTION);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, BUBBLE);
 	TEST_ASSERT_EQUAL(status, 1);
 }
 
 
-TEST(Foo, type_algo_lower_SELECTION_on2_INT_1)
+TEST(Foo, type_algo_upper__INSERTION_ON2_INT_1_array)
 {
-	int array[] = {4, 3, 2, 1};
-	int out[] = {4, 3, 2, 1};
+	int array_in[] = {4, 3, 2, 1};
+	int array_out[] = {4, 3, 2, 1};
 	char type[] = "on2";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, SELECTION);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, INSERTION);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, type_algo_upper__INSERTION_ON2_INT_1_status)
+{
+	int array_in[] = {4, 3, 2, 1};
+	char type[] = "on2";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, INSERTION);
 	TEST_ASSERT_EQUAL(status, 1);
 }
 
 
-TEST(Foo, type_algo_lower_HEAP_onlogn_INT_1)
+TEST(Foo, type_algo_upper__SELECTION_ON2_INT_1_array)
 {
-	int array[] = {4, 3, 2, 1};
-	int out[] = {4, 3, 2, 1};
+	int array_in[] = {4, 3, 2, 1};
+	int array_out[] = {4, 3, 2, 1};
+	char type[] = "on2";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, SELECTION);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, type_algo_upper__SELECTION_ON2_INT_1_status)
+{
+	int array_in[] = {4, 3, 2, 1};
+	char type[] = "on2";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, SELECTION);
+	TEST_ASSERT_EQUAL(status, 1);
+}
+
+
+TEST(Foo, type_algo_upper__HEAP_ONLOGN_INT_1_array)
+{
+	int array_in[] = {4, 3, 2, 1};
+	int array_out[] = {4, 3, 2, 1};
 	char type[] = "onlogn";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, HEAP);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 1);
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, HEAP);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
 }
 
-
-TEST(Foo, type_algo_lower_MERGE_onlogn_INT_1)
+TEST(Foo, type_algo_upper__HEAP_ONLOGN_INT_1_status)
 {
-	int array[] = {4, 3, 2, 1};
-	int out[] = {4, 3, 2, 1};
+	int array_in[] = {4, 3, 2, 1};
 	char type[] = "onlogn";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, MERGE);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, HEAP);
 	TEST_ASSERT_EQUAL(status, 1);
 }
 
 
-TEST(Foo, type_algo_lower_QUICK_onlogn_INT_1)
+TEST(Foo, type_algo_upper__MERGE_ONLOGN_INT_1_array)
 {
-	int array[] = {4, 3, 2, 1};
-	int out[] = {4, 3, 2, 1};
+	int array_in[] = {4, 3, 2, 1};
+	int array_out[] = {4, 3, 2, 1};
 	char type[] = "onlogn";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, QUICK);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, MERGE);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, type_algo_upper__MERGE_ONLOGN_INT_1_status)
+{
+	int array_in[] = {4, 3, 2, 1};
+	char type[] = "onlogn";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, MERGE);
 	TEST_ASSERT_EQUAL(status, 1);
 }
 
 
-TEST(Foo, len_1_COUNTING_On_INT_1)
+TEST(Foo, type_algo_upper__QUICK_ONLOGN_INT_1_array)
 {
-	int array[] = {1};
-	int out[] = {1};
+	int array_in[] = {4, 3, 2, 1};
+	int array_out[] = {4, 3, 2, 1};
+	char type[] = "onlogn";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, QUICK);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, type_algo_upper__QUICK_ONLOGN_INT_1_status)
+{
+	int array_in[] = {4, 3, 2, 1};
+	char type[] = "onlogn";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, QUICK);
+	TEST_ASSERT_EQUAL(status, 1);
+}
+
+
+TEST(Foo, type_algo_lower__COUNTING_on_INT_1_array)
+{
+	int array_in[] = {4, 3, 2, 1};
+	int array_out[] = {4, 3, 2, 1};
+	char type[] = "on";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, COUNTING);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, type_algo_lower__COUNTING_on_INT_1_status)
+{
+	int array_in[] = {4, 3, 2, 1};
+	char type[] = "on";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, COUNTING);
+	TEST_ASSERT_EQUAL(status, 1);
+}
+
+
+TEST(Foo, type_algo_lower__RADIX_on_INT_1_array)
+{
+	int array_in[] = {4, 3, 2, 1};
+	int array_out[] = {4, 3, 2, 1};
+	char type[] = "on";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, RADIX);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, type_algo_lower__RADIX_on_INT_1_status)
+{
+	int array_in[] = {4, 3, 2, 1};
+	char type[] = "on";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, RADIX);
+	TEST_ASSERT_EQUAL(status, 1);
+}
+
+
+TEST(Foo, type_algo_lower__BUBBLE_on2_INT_1_array)
+{
+	int array_in[] = {4, 3, 2, 1};
+	int array_out[] = {4, 3, 2, 1};
+	char type[] = "on2";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, BUBBLE);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, type_algo_lower__BUBBLE_on2_INT_1_status)
+{
+	int array_in[] = {4, 3, 2, 1};
+	char type[] = "on2";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, BUBBLE);
+	TEST_ASSERT_EQUAL(status, 1);
+}
+
+
+TEST(Foo, type_algo_lower__INSERTION_on2_INT_1_array)
+{
+	int array_in[] = {4, 3, 2, 1};
+	int array_out[] = {4, 3, 2, 1};
+	char type[] = "on2";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, INSERTION);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, type_algo_lower__INSERTION_on2_INT_1_status)
+{
+	int array_in[] = {4, 3, 2, 1};
+	char type[] = "on2";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, INSERTION);
+	TEST_ASSERT_EQUAL(status, 1);
+}
+
+
+TEST(Foo, type_algo_lower__SELECTION_on2_INT_1_array)
+{
+	int array_in[] = {4, 3, 2, 1};
+	int array_out[] = {4, 3, 2, 1};
+	char type[] = "on2";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, SELECTION);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, type_algo_lower__SELECTION_on2_INT_1_status)
+{
+	int array_in[] = {4, 3, 2, 1};
+	char type[] = "on2";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, SELECTION);
+	TEST_ASSERT_EQUAL(status, 1);
+}
+
+
+TEST(Foo, type_algo_lower__HEAP_onlogn_INT_1_array)
+{
+	int array_in[] = {4, 3, 2, 1};
+	int array_out[] = {4, 3, 2, 1};
+	char type[] = "onlogn";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, HEAP);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, type_algo_lower__HEAP_onlogn_INT_1_status)
+{
+	int array_in[] = {4, 3, 2, 1};
+	char type[] = "onlogn";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, HEAP);
+	TEST_ASSERT_EQUAL(status, 1);
+}
+
+
+TEST(Foo, type_algo_lower__MERGE_onlogn_INT_1_array)
+{
+	int array_in[] = {4, 3, 2, 1};
+	int array_out[] = {4, 3, 2, 1};
+	char type[] = "onlogn";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, MERGE);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, type_algo_lower__MERGE_onlogn_INT_1_status)
+{
+	int array_in[] = {4, 3, 2, 1};
+	char type[] = "onlogn";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, MERGE);
+	TEST_ASSERT_EQUAL(status, 1);
+}
+
+
+TEST(Foo, type_algo_lower__QUICK_onlogn_INT_1_array)
+{
+	int array_in[] = {4, 3, 2, 1};
+	int array_out[] = {4, 3, 2, 1};
+	char type[] = "onlogn";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, QUICK);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, type_algo_lower__QUICK_onlogn_INT_1_status)
+{
+	int array_in[] = {4, 3, 2, 1};
+	char type[] = "onlogn";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, QUICK);
+	TEST_ASSERT_EQUAL(status, 1);
+}
+
+
+TEST(Foo, len1__COUNTING_On_INT_1_array)
+{
+	int array_in[] = {1};
+	int array_out[] = {1};
 	char type[] = "On";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, COUNTING);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 1);
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, COUNTING);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
 }
 
-
-TEST(Foo, len_1_RADIX_On_INT_1)
+TEST(Foo, len1__COUNTING_On_INT_1_status)
 {
-	int array[] = {1};
-	int out[] = {1};
+	int array_in[] = {1};
 	char type[] = "On";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, RADIX);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, COUNTING);
 	TEST_ASSERT_EQUAL(status, 1);
 }
 
 
-TEST(Foo, len_1_BUBBLE_On2_INT_1)
+TEST(Foo, len1__RADIX_On_INT_1_array)
 {
-	int array[] = {1};
-	int out[] = {1};
-	char type[] = "On2";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, BUBBLE);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 1);
-}
-
-
-TEST(Foo, len_1_INSERTION_On2_INT_1)
-{
-	int array[] = {1};
-	int out[] = {1};
-	char type[] = "On2";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, INSERTION);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 1);
-}
-
-
-TEST(Foo, len_1_SELECTION_On2_INT_1)
-{
-	int array[] = {1};
-	int out[] = {1};
-	char type[] = "On2";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, SELECTION);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 1);
-}
-
-
-TEST(Foo, len_1_HEAP_Onlogn_INT_1)
-{
-	int array[] = {1};
-	int out[] = {1};
-	char type[] = "Onlogn";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, HEAP);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 1);
-}
-
-
-TEST(Foo, len_1_MERGE_Onlogn_INT_1)
-{
-	int array[] = {1};
-	int out[] = {1};
-	char type[] = "Onlogn";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, MERGE);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 1);
-}
-
-
-TEST(Foo, len_1_QUICK_Onlogn_INT_1)
-{
-	int array[] = {1};
-	int out[] = {1};
-	char type[] = "Onlogn";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, QUICK);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 1);
-}
-
-
-TEST(Foo, len_2_COUNTING_On_INT_0)
-{
-	int array[] = {1, 2};
-	int out[] = {1, 2};
+	int array_in[] = {1};
+	int array_out[] = {1};
 	char type[] = "On";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, COUNTING);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 0);
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, RADIX);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
 }
 
-
-TEST(Foo, len_2_RADIX_On_INT_0)
+TEST(Foo, len1__RADIX_On_INT_1_status)
 {
-	int array[] = {1, 2};
-	int out[] = {1, 2};
+	int array_in[] = {1};
 	char type[] = "On";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, RADIX);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 0);
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, RADIX);
+	TEST_ASSERT_EQUAL(status, 1);
 }
 
 
-TEST(Foo, len_2_BUBBLE_On2_INT_0)
+TEST(Foo, len1__BUBBLE_On2_INT_1_array)
 {
-	int array[] = {1, 2};
-	int out[] = {1, 2};
+	int array_in[] = {1};
+	int array_out[] = {1};
 	char type[] = "On2";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, BUBBLE);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 0);
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, BUBBLE);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
 }
 
-
-TEST(Foo, len_2_INSERTION_On2_INT_0)
+TEST(Foo, len1__BUBBLE_On2_INT_1_status)
 {
-	int array[] = {1, 2};
-	int out[] = {1, 2};
+	int array_in[] = {1};
 	char type[] = "On2";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, INSERTION);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 0);
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, BUBBLE);
+	TEST_ASSERT_EQUAL(status, 1);
 }
 
 
-TEST(Foo, len_2_SELECTION_On2_INT_0)
+TEST(Foo, len1__INSERTION_On2_INT_1_array)
 {
-	int array[] = {1, 2};
-	int out[] = {1, 2};
+	int array_in[] = {1};
+	int array_out[] = {1};
 	char type[] = "On2";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, SELECTION);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 0);
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, INSERTION);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, len1__INSERTION_On2_INT_1_status)
+{
+	int array_in[] = {1};
+	char type[] = "On2";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, INSERTION);
+	TEST_ASSERT_EQUAL(status, 1);
 }
 
 
-TEST(Foo, len_2_HEAP_Onlogn_INT_0)
+TEST(Foo, len1__SELECTION_On2_INT_1_array)
 {
-	int array[] = {1, 2};
-	int out[] = {1, 2};
+	int array_in[] = {1};
+	int array_out[] = {1};
+	char type[] = "On2";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, SELECTION);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, len1__SELECTION_On2_INT_1_status)
+{
+	int array_in[] = {1};
+	char type[] = "On2";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, SELECTION);
+	TEST_ASSERT_EQUAL(status, 1);
+}
+
+
+TEST(Foo, len1__HEAP_Onlogn_INT_1_array)
+{
+	int array_in[] = {1};
+	int array_out[] = {1};
 	char type[] = "Onlogn";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, HEAP);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 0);
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, HEAP);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
 }
 
-
-TEST(Foo, len_2_MERGE_Onlogn_INT_0)
+TEST(Foo, len1__HEAP_Onlogn_INT_1_status)
 {
-	int array[] = {1, 2};
-	int out[] = {1, 2};
+	int array_in[] = {1};
 	char type[] = "Onlogn";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, MERGE);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 0);
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, HEAP);
+	TEST_ASSERT_EQUAL(status, 1);
 }
 
 
-TEST(Foo, len_2_QUICK_Onlogn_INT_0)
+TEST(Foo, len1__MERGE_Onlogn_INT_1_array)
 {
-	int array[] = {1, 2};
-	int out[] = {1, 2};
+	int array_in[] = {1};
+	int array_out[] = {1};
 	char type[] = "Onlogn";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, QUICK);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 0);
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, MERGE);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, len1__MERGE_Onlogn_INT_1_status)
+{
+	int array_in[] = {1};
+	char type[] = "Onlogn";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, MERGE);
+	TEST_ASSERT_EQUAL(status, 1);
 }
 
 
-TEST(Foo, len_20_COUNTING_On_INT_0)
+TEST(Foo, len1__QUICK_Onlogn_INT_1_array)
 {
-	int array[] = {19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-	int out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
+	int array_in[] = {1};
+	int array_out[] = {1};
+	char type[] = "Onlogn";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, QUICK);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, len1__QUICK_Onlogn_INT_1_status)
+{
+	int array_in[] = {1};
+	char type[] = "Onlogn";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, QUICK);
+	TEST_ASSERT_EQUAL(status, 1);
+}
+
+
+TEST(Foo, len2__COUNTING_On_INT_0_array)
+{
+	int array_in[] = {1, 2};
+	int array_out[] = {1, 2};
 	char type[] = "On";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, COUNTING);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 0);
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, COUNTING);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
 }
 
-
-TEST(Foo, len_20_RADIX_On_INT_0)
+TEST(Foo, len2__COUNTING_On_INT_0_status)
 {
-	int array[] = {19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-	int out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
+	int array_in[] = {1, 2};
 	char type[] = "On";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, RADIX);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, COUNTING);
 	TEST_ASSERT_EQUAL(status, 0);
 }
 
 
-TEST(Foo, len_20_BUBBLE_On2_INT_0)
+TEST(Foo, len2__RADIX_On_INT_0_array)
 {
-	int array[] = {19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-	int out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
-	char type[] = "On2";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, BUBBLE);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 0);
-}
-
-
-TEST(Foo, len_20_INSERTION_On2_INT_0)
-{
-	int array[] = {19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-	int out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
-	char type[] = "On2";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, INSERTION);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 0);
-}
-
-
-TEST(Foo, len_20_SELECTION_On2_INT_0)
-{
-	int array[] = {19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-	int out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
-	char type[] = "On2";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, SELECTION);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 0);
-}
-
-
-TEST(Foo, len_20_HEAP_Onlogn_INT_0)
-{
-	int array[] = {19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-	int out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
-	char type[] = "Onlogn";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, HEAP);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 0);
-}
-
-
-TEST(Foo, len_20_MERGE_Onlogn_INT_0)
-{
-	int array[] = {19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-	int out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
-	char type[] = "Onlogn";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, MERGE);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 0);
-}
-
-
-TEST(Foo, len_20_QUICK_Onlogn_INT_0)
-{
-	int array[] = {19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-	int out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
-	char type[] = "Onlogn";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, QUICK);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 0);
-}
-
-
-TEST(Foo, len_21_COUNTING_On_INT_1)
-{
-	int array[] = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-	int out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+	int array_in[] = {1, 2};
+	int array_out[] = {1, 2};
 	char type[] = "On";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, COUNTING);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 1);
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, RADIX);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
 }
 
-
-TEST(Foo, len_21_RADIX_On_INT_1)
+TEST(Foo, len2__RADIX_On_INT_0_status)
 {
-	int array[] = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-	int out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+	int array_in[] = {1, 2};
 	char type[] = "On";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, RADIX);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 1);
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, RADIX);
+	TEST_ASSERT_EQUAL(status, 0);
 }
 
 
-TEST(Foo, len_21_BUBBLE_On2_INT_1)
+TEST(Foo, len2__BUBBLE_On2_INT_0_array)
 {
-	int array[] = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-	int out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+	int array_in[] = {1, 2};
+	int array_out[] = {1, 2};
 	char type[] = "On2";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, BUBBLE);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 1);
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, BUBBLE);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
 }
 
-
-TEST(Foo, len_21_INSERTION_On2_INT_1)
+TEST(Foo, len2__BUBBLE_On2_INT_0_status)
 {
-	int array[] = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-	int out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+	int array_in[] = {1, 2};
 	char type[] = "On2";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, INSERTION);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
-	TEST_ASSERT_EQUAL(status, 1);
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, BUBBLE);
+	TEST_ASSERT_EQUAL(status, 0);
 }
 
 
-TEST(Foo, len_21_SELECTION_On2_INT_1)
+TEST(Foo, len2__INSERTION_On2_INT_0_array)
 {
-	int array[] = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-	int out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+	int array_in[] = {1, 2};
+	int array_out[] = {1, 2};
 	char type[] = "On2";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, SELECTION);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, INSERTION);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, len2__INSERTION_On2_INT_0_status)
+{
+	int array_in[] = {1, 2};
+	char type[] = "On2";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, INSERTION);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, len2__SELECTION_On2_INT_0_array)
+{
+	int array_in[] = {1, 2};
+	int array_out[] = {1, 2};
+	char type[] = "On2";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, SELECTION);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, len2__SELECTION_On2_INT_0_status)
+{
+	int array_in[] = {1, 2};
+	char type[] = "On2";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, SELECTION);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, len2__HEAP_Onlogn_INT_0_array)
+{
+	int array_in[] = {1, 2};
+	int array_out[] = {1, 2};
+	char type[] = "Onlogn";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, HEAP);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, len2__HEAP_Onlogn_INT_0_status)
+{
+	int array_in[] = {1, 2};
+	char type[] = "Onlogn";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, HEAP);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, len2__MERGE_Onlogn_INT_0_array)
+{
+	int array_in[] = {1, 2};
+	int array_out[] = {1, 2};
+	char type[] = "Onlogn";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, MERGE);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, len2__MERGE_Onlogn_INT_0_status)
+{
+	int array_in[] = {1, 2};
+	char type[] = "Onlogn";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, MERGE);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, len2__QUICK_Onlogn_INT_0_array)
+{
+	int array_in[] = {1, 2};
+	int array_out[] = {1, 2};
+	char type[] = "Onlogn";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, QUICK);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, len2__QUICK_Onlogn_INT_0_status)
+{
+	int array_in[] = {1, 2};
+	char type[] = "Onlogn";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, QUICK);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, len20__COUNTING_On_INT_0_array)
+{
+	int array_in[] = {19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	int array_out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
+	char type[] = "On";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, COUNTING);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, len20__COUNTING_On_INT_0_status)
+{
+	int array_in[] = {19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	char type[] = "On";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, COUNTING);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, len20__RADIX_On_INT_0_array)
+{
+	int array_in[] = {19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	int array_out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
+	char type[] = "On";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, RADIX);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, len20__RADIX_On_INT_0_status)
+{
+	int array_in[] = {19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	char type[] = "On";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, RADIX);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, len20__BUBBLE_On2_INT_0_array)
+{
+	int array_in[] = {19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	int array_out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
+	char type[] = "On2";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, BUBBLE);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, len20__BUBBLE_On2_INT_0_status)
+{
+	int array_in[] = {19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	char type[] = "On2";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, BUBBLE);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, len20__INSERTION_On2_INT_0_array)
+{
+	int array_in[] = {19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	int array_out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
+	char type[] = "On2";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, INSERTION);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, len20__INSERTION_On2_INT_0_status)
+{
+	int array_in[] = {19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	char type[] = "On2";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, INSERTION);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, len20__SELECTION_On2_INT_0_array)
+{
+	int array_in[] = {19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	int array_out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
+	char type[] = "On2";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, SELECTION);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, len20__SELECTION_On2_INT_0_status)
+{
+	int array_in[] = {19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	char type[] = "On2";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, SELECTION);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, len20__HEAP_Onlogn_INT_0_array)
+{
+	int array_in[] = {19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	int array_out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
+	char type[] = "Onlogn";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, HEAP);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, len20__HEAP_Onlogn_INT_0_status)
+{
+	int array_in[] = {19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	char type[] = "Onlogn";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, HEAP);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, len20__MERGE_Onlogn_INT_0_array)
+{
+	int array_in[] = {19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	int array_out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
+	char type[] = "Onlogn";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, MERGE);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, len20__MERGE_Onlogn_INT_0_status)
+{
+	int array_in[] = {19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	char type[] = "Onlogn";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, MERGE);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, len20__QUICK_Onlogn_INT_0_array)
+{
+	int array_in[] = {19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	int array_out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
+	char type[] = "Onlogn";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, QUICK);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, len20__QUICK_Onlogn_INT_0_status)
+{
+	int array_in[] = {19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	char type[] = "Onlogn";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, QUICK);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, len21__COUNTING_On_INT_1_array)
+{
+	int array_in[] = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	int array_out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+	char type[] = "On";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, COUNTING);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, len21__COUNTING_On_INT_1_status)
+{
+	int array_in[] = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	char type[] = "On";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, COUNTING);
 	TEST_ASSERT_EQUAL(status, 1);
 }
 
 
-TEST(Foo, len_21_HEAP_Onlogn_INT_1)
+TEST(Foo, len21__RADIX_On_INT_1_array)
 {
-	int array[] = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-	int out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
-	char type[] = "Onlogn";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, HEAP);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
+	int array_in[] = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	int array_out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+	char type[] = "On";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, RADIX);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, len21__RADIX_On_INT_1_status)
+{
+	int array_in[] = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	char type[] = "On";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, RADIX);
 	TEST_ASSERT_EQUAL(status, 1);
 }
 
 
-TEST(Foo, len_21_MERGE_Onlogn_INT_1)
+TEST(Foo, len21__BUBBLE_On2_INT_1_array)
 {
-	int array[] = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-	int out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
-	char type[] = "Onlogn";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, MERGE);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
+	int array_in[] = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	int array_out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+	char type[] = "On2";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, BUBBLE);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, len21__BUBBLE_On2_INT_1_status)
+{
+	int array_in[] = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	char type[] = "On2";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, BUBBLE);
 	TEST_ASSERT_EQUAL(status, 1);
 }
 
 
-TEST(Foo, len_21_QUICK_Onlogn_INT_1)
+TEST(Foo, len21__INSERTION_On2_INT_1_array)
 {
-	int array[] = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
-	int out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+	int array_in[] = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	int array_out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+	char type[] = "On2";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, INSERTION);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, len21__INSERTION_On2_INT_1_status)
+{
+	int array_in[] = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	char type[] = "On2";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, INSERTION);
+	TEST_ASSERT_EQUAL(status, 1);
+}
+
+
+TEST(Foo, len21__SELECTION_On2_INT_1_array)
+{
+	int array_in[] = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	int array_out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+	char type[] = "On2";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, SELECTION);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, len21__SELECTION_On2_INT_1_status)
+{
+	int array_in[] = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	char type[] = "On2";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, SELECTION);
+	TEST_ASSERT_EQUAL(status, 1);
+}
+
+
+TEST(Foo, len21__HEAP_Onlogn_INT_1_array)
+{
+	int array_in[] = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	int array_out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
 	char type[] = "Onlogn";
-	int length = sizeof(array) / sizeof(int);
-	int status = sort(array, length, type, QUICK);
-	TEST_ASSERT_EQUAL_INT_ARRAY(out, array, length);
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, HEAP);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, len21__HEAP_Onlogn_INT_1_status)
+{
+	int array_in[] = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	char type[] = "Onlogn";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, HEAP);
+	TEST_ASSERT_EQUAL(status, 1);
+}
+
+
+TEST(Foo, len21__MERGE_Onlogn_INT_1_array)
+{
+	int array_in[] = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	int array_out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+	char type[] = "Onlogn";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, MERGE);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, len21__MERGE_Onlogn_INT_1_status)
+{
+	int array_in[] = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	char type[] = "Onlogn";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, MERGE);
+	TEST_ASSERT_EQUAL(status, 1);
+}
+
+
+TEST(Foo, len21__QUICK_Onlogn_INT_1_array)
+{
+	int array_in[] = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	int array_out[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+	char type[] = "Onlogn";
+	int length = sizeof(array_in) / sizeof(int);
+	sort(array_in, length, type, QUICK);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, len21__QUICK_Onlogn_INT_1_status)
+{
+	int array_in[] = {20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
+	char type[] = "Onlogn";
+	int status = 0;
+	int length = sizeof(array_in) / sizeof(int);
+	status = sort(array_in, length, type, QUICK);
 	TEST_ASSERT_EQUAL(status, 1);
 }
 

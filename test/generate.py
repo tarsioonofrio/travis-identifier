@@ -32,6 +32,12 @@ algorithm_type_list = (
 )
 
 
+def create_group(list_test_fn):
+    inner_code_list = [f"RUN_TEST_CASE(Foo, {n});" for n in list_test_fn]
+    runner_txt = "{\n\t" + "\n\t".join(inner_code_list) + "\n}\n"
+    return runner_head + runner_txt
+
+
 def create_fn(test_name, algorithm, type_algo, type_array, status, array_in, array_out):
     """
     :param array_out:
@@ -44,27 +50,36 @@ def create_fn(test_name, algorithm, type_algo, type_array, status, array_in, arr
     :param array_out: list of int, float or double
     :return: string of function
     """
+
+    name_array = f"{test_name}_array"
+    name_status = f"{test_name}_status"
+
+    head_array = f"TEST(Foo, {name_array})"
+    head_status = f"TEST(Foo, {name_status})"
+
     array_in_str = ", ".join(map(str, array_in))
     array_out_str = ", ".join(map(str, array_out))
-    head = f"TEST(Foo, {test_name})"
-    int_array = f"int array[] = {{{array_in_str}}};"
-    int_out = f"int out[] = {{{array_out_str}}};"
+    int_array_in = f"int array_in[] = {{{array_in_str}}};"
+    int_array_out = f"int array_out[] = {{{array_out_str}}};"
     char_type = f'char type[] = "{type_algo}";'
-    int_length = "int length = sizeof(array) / sizeof(int);"
-    int_status = f"int status = sort(array, length, type, {algorithm});"
-    test_array = f"TEST_ASSERT_EQUAL_{type_array}_ARRAY(out, array, length);"
-    test = f"TEST_ASSERT_EQUAL(status, {status});"
-    inner_code_list = [int_array, int_out, char_type, int_length, int_status, test_array, test]
-    inner_code_txt = "\n\t".join(inner_code_list)
-    fn_code_txt = head + "\n{" + "\n\t" + inner_code_txt + "\n}\n\n"
-    return fn_code_txt
+    int_status = f'int status = 0;'
+    int_length = "int length = sizeof(array_in) / sizeof(int);"
+    status_sort = f"status = sort(array_in, length, type, {algorithm});"
+    sort = f"sort(array_in, length, type, {algorithm});"
+    test_array = f"TEST_ASSERT_EQUAL_{type_array}_ARRAY(array_out, array_in, length);"
+    test_status = f"TEST_ASSERT_EQUAL(status, {status});"
 
+    array_inner_list = [int_array_in, int_array_out, char_type, int_length, sort, test_array]
+    array_inner_txt = "\n\t".join(array_inner_list)
+    array_fn_code_txt = head_array + "\n{" + "\n\t" + array_inner_txt + "\n}\n\n"
 
-def create_group(list_test_fn):
-    names = [x[0] for x in list_test_fn]
-    inner_code_list = [f"RUN_TEST_CASE(Foo, {n});" for n in names]
-    runner_txt = "{\n\t" + "\n\t".join(inner_code_list) + "\n}\n"
-    return runner_head + runner_txt
+    status_inner_list = [int_array_in, char_type, int_status, int_length, status_sort, test_status]
+    status_inner_txt = "\n\t".join(status_inner_list)
+    status_fn_code_txt = head_status + "\n{" + "\n\t" + status_inner_txt + "\n}\n\n"
+
+    fn_code = array_fn_code_txt + status_fn_code_txt
+    output = {"name": [name_array, name_status], "code": fn_code}
+    return output
 
 
 def example():
@@ -99,21 +114,21 @@ def main():
 
     # testes aprovação básico com int
     basic = [
-        (f'basic_{alg}_{tp}_{type_int}_{status_ok}', alg, tp, type_int, status_ok, array_in_basic,
+        (f'basic__{alg}_{tp}_{type_int}_{status_ok}', alg, tp, type_int, status_ok, array_in_basic,
          array_out_basic)
         for alg, tp in algorithm_type_list
     ]
 
     # testes reprovação com type algo em upper case
     type_algo_upper = [
-        (f'type_algo_upper_{alg}_{tp.upper()}_{type_int}_{status_fail}', alg, tp.lower(), type_int,
+        (f'type_algo_upper__{alg}_{tp.upper()}_{type_int}_{status_fail}', alg, tp.lower(), type_int,
          status_fail, array_in_basic, array_in_basic)
         for alg, tp in algorithm_type_list
     ]
 
     # testes reprovação com type algo em lower case
     type_algo_lower = [
-        (f'type_algo_lower_{alg}_{tp.lower()}_{type_int}_{status_fail}', alg, tp.lower(), type_int,
+        (f'type_algo_lower__{alg}_{tp.lower()}_{type_int}_{status_fail}', alg, tp.lower(), type_int,
          status_fail, array_in_basic, array_in_basic)
         for alg, tp in algorithm_type_list
     ]
@@ -121,7 +136,7 @@ def main():
     # testes com tamanho do array 1 reprovação
     array_len1 = [1]
     len1 = [
-        (f'len_1_{alg}_{tp}_{type_int}_{status_fail}', alg, tp, type_int,
+        (f'len1__{alg}_{tp}_{type_int}_{status_fail}', alg, tp, type_int,
          status_fail, array_len1, array_len1)
         for alg, tp in algorithm_type_list
     ]
@@ -130,7 +145,7 @@ def main():
     array_in_len2 = [1, 2]
     array_out_len2 = sorted(array_in_len2)
     len2 = [
-        (f'len_2_{alg}_{tp}_{type_int}_{status_ok}', alg, tp, type_int,
+        (f'len2__{alg}_{tp}_{type_int}_{status_ok}', alg, tp, type_int,
          status_ok, array_in_len2, array_out_len2)
         for alg, tp in algorithm_type_list
     ]
@@ -139,7 +154,7 @@ def main():
     array_in_len20 = list(reversed(range(20)))
     array_out_len20 = sorted(array_in_len20)
     len20 = [
-        (f'len_20_{alg}_{tp}_{type_int}_{status_ok}', alg, tp, type_int,
+        (f'len20__{alg}_{tp}_{type_int}_{status_ok}', alg, tp, type_int,
          status_ok, array_in_len20, array_out_len20)
         for alg, tp in algorithm_type_list
     ]
@@ -148,7 +163,7 @@ def main():
     array_in_len21 = list(reversed(range(21)))
     array_out_len21 = sorted(array_in_len21)
     len21 = [
-        (f'len_21_{alg}_{tp}_{type_int}_{status_fail}', alg, tp, type_int,
+        (f'len21__{alg}_{tp}_{type_int}_{status_fail}', alg, tp, type_int,
          status_fail, array_in_len21, array_out_len21)
         for alg, tp in algorithm_type_list
     ]
@@ -159,15 +174,18 @@ def main():
 
     all_tests = [item for sublist in all_tests_list for item in sublist]
 
-    test_fn = (
+    test_name_function = [
         create_fn(n, alg, tal, tar, s, ain, at)
         for n, alg, tal, tar, s, ain, at in all_tests
-    )
+    ]
 
-    basic_runner = create_group(all_tests)
+    test_name = [name for d in test_name_function for name in d["name"]]
+    test_function = [d["code"] for d in test_name_function]
+
+    basic_runner = create_group(test_name)
 
     with open(root_path / "TestFoo.c", "w") as f:
-        f.write(test_head + "\n".join(test_fn))
+        f.write(test_head + "\n".join(test_function))
 
     with open(root_path / "test_runners/TestFoo_Runner.c", "w") as f:
         f.write(basic_runner)
