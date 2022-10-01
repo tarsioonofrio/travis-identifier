@@ -3,6 +3,5 @@
 
 TEST_GROUP_RUNNER(Foo)
 {
-  RUN_TEST_CASE(Foo, TestFoo1);
-//  RUN_TEST_CASE(Foo, TestFoo2);
+	RUN_TEST_CASE(Foo, basic_SELECTION_On2_INT);
 }
