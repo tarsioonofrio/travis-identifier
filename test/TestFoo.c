@@ -1,4 +1,5 @@
 #include "sort.h"
+#include "limits.h"
 #include "unity.h"
 #include "unity_fixture.h"
 
@@ -1074,5 +1075,509 @@ TEST(Foo, type_algo_err__QUICK_On2_INT_1_status)
 	int length = 4;
 	status = sort(array_in, length, type, QUICK);
 	TEST_ASSERT_EQUAL(status, 1);
+}
+
+
+TEST(Foo, limit_min_ok__BUBBLE_On2_INT_0_array)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MIN + 0, 0, -1, -2, -3, -4};
+	int array_out[] = {INT_MIN + 0, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5};
+	char type[] = "On2";
+	int length = 11;
+	sort(array_in, length, type, BUBBLE);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, limit_min_ok__BUBBLE_On2_INT_0_status)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MIN + 0, 0, -1, -2, -3, -4};
+	char type[] = "On2";
+	int status = 0;
+	int length = 11;
+	status = sort(array_in, length, type, BUBBLE);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, limit_min_ok__INSERTION_On2_INT_0_array)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MIN + 0, 0, -1, -2, -3, -4};
+	int array_out[] = {INT_MIN + 0, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5};
+	char type[] = "On2";
+	int length = 11;
+	sort(array_in, length, type, INSERTION);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, limit_min_ok__INSERTION_On2_INT_0_status)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MIN + 0, 0, -1, -2, -3, -4};
+	char type[] = "On2";
+	int status = 0;
+	int length = 11;
+	status = sort(array_in, length, type, INSERTION);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, limit_min_ok__SELECTION_On2_INT_0_array)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MIN + 0, 0, -1, -2, -3, -4};
+	int array_out[] = {INT_MIN + 0, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5};
+	char type[] = "On2";
+	int length = 11;
+	sort(array_in, length, type, SELECTION);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, limit_min_ok__SELECTION_On2_INT_0_status)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MIN + 0, 0, -1, -2, -3, -4};
+	char type[] = "On2";
+	int status = 0;
+	int length = 11;
+	status = sort(array_in, length, type, SELECTION);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, limit_min_ok__HEAP_Onlogn_INT_0_array)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MIN + 0, 0, -1, -2, -3, -4};
+	int array_out[] = {INT_MIN + 0, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5};
+	char type[] = "Onlogn";
+	int length = 11;
+	sort(array_in, length, type, HEAP);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, limit_min_ok__HEAP_Onlogn_INT_0_status)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MIN + 0, 0, -1, -2, -3, -4};
+	char type[] = "Onlogn";
+	int status = 0;
+	int length = 11;
+	status = sort(array_in, length, type, HEAP);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, limit_min_ok__MERGE_Onlogn_INT_0_array)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MIN + 0, 0, -1, -2, -3, -4};
+	int array_out[] = {INT_MIN + 0, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5};
+	char type[] = "Onlogn";
+	int length = 11;
+	sort(array_in, length, type, MERGE);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, limit_min_ok__MERGE_Onlogn_INT_0_status)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MIN + 0, 0, -1, -2, -3, -4};
+	char type[] = "Onlogn";
+	int status = 0;
+	int length = 11;
+	status = sort(array_in, length, type, MERGE);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, limit_min_ok__QUICK_Onlogn_INT_0_array)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MIN + 0, 0, -1, -2, -3, -4};
+	int array_out[] = {INT_MIN + 0, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5};
+	char type[] = "Onlogn";
+	int length = 11;
+	sort(array_in, length, type, QUICK);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, limit_min_ok__QUICK_Onlogn_INT_0_status)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MIN + 0, 0, -1, -2, -3, -4};
+	char type[] = "Onlogn";
+	int status = 0;
+	int length = 11;
+	status = sort(array_in, length, type, QUICK);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, limit_max_ok__BUBBLE_On2_INT_0_array)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MAX + 0, 0, -1, -2, -3, -4};
+	int array_out[] = {-4, -3, -2, -1, 0, 1, 2, 3, 4, 5, INT_MAX + 0};
+	char type[] = "On2";
+	int length = 11;
+	sort(array_in, length, type, BUBBLE);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, limit_max_ok__BUBBLE_On2_INT_0_status)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MAX + 0, 0, -1, -2, -3, -4};
+	char type[] = "On2";
+	int status = 0;
+	int length = 11;
+	status = sort(array_in, length, type, BUBBLE);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, limit_max_ok__INSERTION_On2_INT_0_array)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MAX + 0, 0, -1, -2, -3, -4};
+	int array_out[] = {-4, -3, -2, -1, 0, 1, 2, 3, 4, 5, INT_MAX + 0};
+	char type[] = "On2";
+	int length = 11;
+	sort(array_in, length, type, INSERTION);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, limit_max_ok__INSERTION_On2_INT_0_status)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MAX + 0, 0, -1, -2, -3, -4};
+	char type[] = "On2";
+	int status = 0;
+	int length = 11;
+	status = sort(array_in, length, type, INSERTION);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, limit_max_ok__SELECTION_On2_INT_0_array)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MAX + 0, 0, -1, -2, -3, -4};
+	int array_out[] = {-4, -3, -2, -1, 0, 1, 2, 3, 4, 5, INT_MAX + 0};
+	char type[] = "On2";
+	int length = 11;
+	sort(array_in, length, type, SELECTION);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, limit_max_ok__SELECTION_On2_INT_0_status)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MAX + 0, 0, -1, -2, -3, -4};
+	char type[] = "On2";
+	int status = 0;
+	int length = 11;
+	status = sort(array_in, length, type, SELECTION);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, limit_max_ok__HEAP_Onlogn_INT_0_array)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MAX + 0, 0, -1, -2, -3, -4};
+	int array_out[] = {-4, -3, -2, -1, 0, 1, 2, 3, 4, 5, INT_MAX + 0};
+	char type[] = "Onlogn";
+	int length = 11;
+	sort(array_in, length, type, HEAP);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, limit_max_ok__HEAP_Onlogn_INT_0_status)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MAX + 0, 0, -1, -2, -3, -4};
+	char type[] = "Onlogn";
+	int status = 0;
+	int length = 11;
+	status = sort(array_in, length, type, HEAP);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, limit_max_ok__MERGE_Onlogn_INT_0_array)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MAX + 0, 0, -1, -2, -3, -4};
+	int array_out[] = {-4, -3, -2, -1, 0, 1, 2, 3, 4, 5, INT_MAX + 0};
+	char type[] = "Onlogn";
+	int length = 11;
+	sort(array_in, length, type, MERGE);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, limit_max_ok__MERGE_Onlogn_INT_0_status)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MAX + 0, 0, -1, -2, -3, -4};
+	char type[] = "Onlogn";
+	int status = 0;
+	int length = 11;
+	status = sort(array_in, length, type, MERGE);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, limit_max_ok__QUICK_Onlogn_INT_0_array)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MAX + 0, 0, -1, -2, -3, -4};
+	int array_out[] = {-4, -3, -2, -1, 0, 1, 2, 3, 4, 5, INT_MAX + 0};
+	char type[] = "Onlogn";
+	int length = 11;
+	sort(array_in, length, type, QUICK);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, limit_max_ok__QUICK_Onlogn_INT_0_status)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MAX + 0, 0, -1, -2, -3, -4};
+	char type[] = "Onlogn";
+	int status = 0;
+	int length = 11;
+	status = sort(array_in, length, type, QUICK);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, limit_min_err__BUBBLE_On2_INT_0_array)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MIN + -1, 0, -1, -2, -3, -4};
+	int array_out[] = {-4, -3, -2, -1, 0, 1, 2, 3, 4, 5, INT_MIN + -1};
+	char type[] = "On2";
+	int length = 11;
+	sort(array_in, length, type, BUBBLE);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, limit_min_err__BUBBLE_On2_INT_0_status)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MIN + -1, 0, -1, -2, -3, -4};
+	char type[] = "On2";
+	int status = 0;
+	int length = 11;
+	status = sort(array_in, length, type, BUBBLE);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, limit_min_err__INSERTION_On2_INT_0_array)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MIN + -1, 0, -1, -2, -3, -4};
+	int array_out[] = {-4, -3, -2, -1, 0, 1, 2, 3, 4, 5, INT_MIN + -1};
+	char type[] = "On2";
+	int length = 11;
+	sort(array_in, length, type, INSERTION);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, limit_min_err__INSERTION_On2_INT_0_status)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MIN + -1, 0, -1, -2, -3, -4};
+	char type[] = "On2";
+	int status = 0;
+	int length = 11;
+	status = sort(array_in, length, type, INSERTION);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, limit_min_err__SELECTION_On2_INT_0_array)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MIN + -1, 0, -1, -2, -3, -4};
+	int array_out[] = {-4, -3, -2, -1, 0, 1, 2, 3, 4, 5, INT_MIN + -1};
+	char type[] = "On2";
+	int length = 11;
+	sort(array_in, length, type, SELECTION);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, limit_min_err__SELECTION_On2_INT_0_status)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MIN + -1, 0, -1, -2, -3, -4};
+	char type[] = "On2";
+	int status = 0;
+	int length = 11;
+	status = sort(array_in, length, type, SELECTION);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, limit_min_err__HEAP_Onlogn_INT_0_array)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MIN + -1, 0, -1, -2, -3, -4};
+	int array_out[] = {-4, -3, -2, -1, 0, 1, 2, 3, 4, 5, INT_MIN + -1};
+	char type[] = "Onlogn";
+	int length = 11;
+	sort(array_in, length, type, HEAP);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, limit_min_err__HEAP_Onlogn_INT_0_status)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MIN + -1, 0, -1, -2, -3, -4};
+	char type[] = "Onlogn";
+	int status = 0;
+	int length = 11;
+	status = sort(array_in, length, type, HEAP);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, limit_min_err__MERGE_Onlogn_INT_0_array)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MIN + -1, 0, -1, -2, -3, -4};
+	int array_out[] = {-4, -3, -2, -1, 0, 1, 2, 3, 4, 5, INT_MIN + -1};
+	char type[] = "Onlogn";
+	int length = 11;
+	sort(array_in, length, type, MERGE);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, limit_min_err__MERGE_Onlogn_INT_0_status)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MIN + -1, 0, -1, -2, -3, -4};
+	char type[] = "Onlogn";
+	int status = 0;
+	int length = 11;
+	status = sort(array_in, length, type, MERGE);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, limit_min_err__QUICK_Onlogn_INT_0_array)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MIN + -1, 0, -1, -2, -3, -4};
+	int array_out[] = {-4, -3, -2, -1, 0, 1, 2, 3, 4, 5, INT_MIN + -1};
+	char type[] = "Onlogn";
+	int length = 11;
+	sort(array_in, length, type, QUICK);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, limit_min_err__QUICK_Onlogn_INT_0_status)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MIN + -1, 0, -1, -2, -3, -4};
+	char type[] = "Onlogn";
+	int status = 0;
+	int length = 11;
+	status = sort(array_in, length, type, QUICK);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, limit_max_err__BUBBLE_On2_INT_0_array)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MAX + 1, 0, -1, -2, -3, -4};
+	int array_out[] = {INT_MAX + 1, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5};
+	char type[] = "On2";
+	int length = 11;
+	sort(array_in, length, type, BUBBLE);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, limit_max_err__BUBBLE_On2_INT_0_status)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MAX + 1, 0, -1, -2, -3, -4};
+	char type[] = "On2";
+	int status = 0;
+	int length = 11;
+	status = sort(array_in, length, type, BUBBLE);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, limit_max_err__INSERTION_On2_INT_0_array)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MAX + 1, 0, -1, -2, -3, -4};
+	int array_out[] = {INT_MAX + 1, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5};
+	char type[] = "On2";
+	int length = 11;
+	sort(array_in, length, type, INSERTION);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, limit_max_err__INSERTION_On2_INT_0_status)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MAX + 1, 0, -1, -2, -3, -4};
+	char type[] = "On2";
+	int status = 0;
+	int length = 11;
+	status = sort(array_in, length, type, INSERTION);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, limit_max_err__SELECTION_On2_INT_0_array)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MAX + 1, 0, -1, -2, -3, -4};
+	int array_out[] = {INT_MAX + 1, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5};
+	char type[] = "On2";
+	int length = 11;
+	sort(array_in, length, type, SELECTION);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, limit_max_err__SELECTION_On2_INT_0_status)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MAX + 1, 0, -1, -2, -3, -4};
+	char type[] = "On2";
+	int status = 0;
+	int length = 11;
+	status = sort(array_in, length, type, SELECTION);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, limit_max_err__HEAP_Onlogn_INT_0_array)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MAX + 1, 0, -1, -2, -3, -4};
+	int array_out[] = {INT_MAX + 1, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5};
+	char type[] = "Onlogn";
+	int length = 11;
+	sort(array_in, length, type, HEAP);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, limit_max_err__HEAP_Onlogn_INT_0_status)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MAX + 1, 0, -1, -2, -3, -4};
+	char type[] = "Onlogn";
+	int status = 0;
+	int length = 11;
+	status = sort(array_in, length, type, HEAP);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, limit_max_err__MERGE_Onlogn_INT_0_array)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MAX + 1, 0, -1, -2, -3, -4};
+	int array_out[] = {INT_MAX + 1, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5};
+	char type[] = "Onlogn";
+	int length = 11;
+	sort(array_in, length, type, MERGE);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, limit_max_err__MERGE_Onlogn_INT_0_status)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MAX + 1, 0, -1, -2, -3, -4};
+	char type[] = "Onlogn";
+	int status = 0;
+	int length = 11;
+	status = sort(array_in, length, type, MERGE);
+	TEST_ASSERT_EQUAL(status, 0);
+}
+
+
+TEST(Foo, limit_max_err__QUICK_Onlogn_INT_0_array)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MAX + 1, 0, -1, -2, -3, -4};
+	int array_out[] = {INT_MAX + 1, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5};
+	char type[] = "Onlogn";
+	int length = 11;
+	sort(array_in, length, type, QUICK);
+	TEST_ASSERT_EQUAL_INT_ARRAY(array_out, array_in, length);
+}
+
+TEST(Foo, limit_max_err__QUICK_Onlogn_INT_0_status)
+{
+	int array_in[] = {5, 4, 3, 2, 1, INT_MAX + 1, 0, -1, -2, -3, -4};
+	char type[] = "Onlogn";
+	int status = 0;
+	int length = 11;
+	status = sort(array_in, length, type, QUICK);
+	TEST_ASSERT_EQUAL(status, 0);
 }
 

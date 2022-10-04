@@ -1,6 +1,8 @@
+import itertools
 from pathlib import Path
 
 test_head = """#include "sort.h"
+#include "limits.h"
 #include "unity.h"
 #include "unity_fixture.h"
 
@@ -17,7 +19,7 @@ TEST_GROUP_RUNNER(Foo)
 """
 
 algorithm_list = ("COUNTING", "RADIX", "BUBBLE", "INSERTION", "SELECTION", "HEAP", "MERGE", "QUICK")
-type_algo_list = ("On", "On2",  "Onlogn")
+type_algo_list = ("On", "On2", "Onlogn")
 type_array_list = ("INT", "FLOAT", "DOUBLE")
 status_list = (0, 1)
 algorithm_type_list = (
@@ -27,8 +29,8 @@ algorithm_type_list = (
     ("INSERTION", "On2"),
     ("SELECTION", "On2"),
     ("HEAP", "Onlogn"),
-    ("MERGE",  "Onlogn"),
-    ("QUICK",  "Onlogn")
+    ("MERGE", "Onlogn"),
+    ("QUICK", "Onlogn")
 )
 
 
@@ -38,7 +40,7 @@ def create_group(list_test_fn):
     return runner_head + runner_txt
 
 
-def create_fn(test_name, algorithm, type_algo, type_array, status, array_in, array_out):
+def fn_gen_default(test_name, algorithm, type_algo, type_array, status, array_in, array_out):
     """
     :param array_out:
     :param test_name: name of test
@@ -83,12 +85,69 @@ def create_fn(test_name, algorithm, type_algo, type_array, status, array_in, arr
     return output
 
 
-def generate_files(all_tests_list):
-    all_tests = [item for sublist in all_tests_list for item in sublist]
+def fn_gen_limit(test_name, algorithm, type_algo, type_array, status, limit, sum_int=0):
+    """
+    :param test_name: name of test
+    :param algorithm: COUNTING, RADIX, BUBBLE, INSERTION, SELECTION, HEAP, MERGE, QUICK
+    :param type_algo: On, On2, Onlogn
+    :param type_array: INT, FLOAT, DOUBLE
+    :param status: 0 = No error; 1 = type algo error, 2 = array size < 2 or > 20)
+    :param limit: MIN or MAX
+    :param sum_int: value to add to INT_MIN or INT_MAX
+    :return: string of function
+    """
+
+    name_array = f"{test_name}_array"
+    name_status = f"{test_name}_status"
+
+    head_array = f"TEST(Foo, {name_array})"
+    head_status = f"TEST(Foo, {name_status})"
+
+    array_in1 = list(range(5, 0, -1))
+    array_in2 = list(range(0, -5, -1))
+    length = len(array_in1) + len(array_in2) + 1
+    array_in1_str = ", ".join(map(str, array_in1))
+    array_in2_str = ", ".join(map(str, array_in2))
+    array_in_str = f"{array_in1_str}, INT_{limit} + {sum_int}, {array_in2_str}"
+    array_out = sorted(array_in1 + array_in2)
+    array_out_str_ = ", ".join(map(str, array_out))
+    array_out_str = (
+        f"INT_{limit} + {sum_int}, {array_out_str_}" if limit == "MIN" and sum_int == 0
+        else f"{array_out_str_}, INT_{limit} + {sum_int}" if limit == "MAX" and sum_int == 0
+        else f"INT_{limit} + {sum_int}, {array_out_str_}" if limit == "MAX" and sum_int == 1
+        else f"{array_out_str_}, INT_{limit} + {sum_int}" if limit == "MIN" and sum_int == -1
+        else ""
+    )
+    int_array_in = f"int array_in[] = {{{array_in_str}}};"
+    int_array_out = f"int array_out[] = {{{array_out_str}}};"
+    char_type = f'char type[] = "{type_algo}";'
+    int_status = f'int status = 0;'
+    int_length = f"int length = {length};"
+    status_sort = f"status = sort(array_in, length, type, {algorithm});"
+    sort = f"sort(array_in, length, type, {algorithm});"
+    test_array = f"TEST_ASSERT_EQUAL_{type_array}_ARRAY(array_out, array_in, length);"
+    test_status = f"TEST_ASSERT_EQUAL(status, {status});"
+
+    array_inner_list = [int_array_in, int_array_out, char_type, int_length, sort, test_array]
+    array_inner_txt = "\n\t".join(array_inner_list)
+    array_fn_code_txt = head_array + "\n{" + "\n\t" + array_inner_txt + "\n}\n\n"
+
+    status_inner_list = [int_array_in, char_type, int_status, int_length, status_sort, test_status]
+    status_inner_txt = "\n\t".join(status_inner_list)
+    status_fn_code_txt = head_status + "\n{" + "\n\t" + status_inner_txt + "\n}\n\n"
+
+    fn_code = array_fn_code_txt + status_fn_code_txt
+    output = {"name": [name_array, name_status], "code": fn_code}
+    return output
+
+
+def generate_files(all_tests, fns):
+    # all_tests = [item for sublist in all_tests_list for item in sublist]
 
     test_name_function = [
-        create_fn(n, alg, tal, tar, s, ain, at)
-        for n, alg, tal, tar, s, ain, at in all_tests
+        fns[k](* args)
+        for k, v in all_tests.items()
+        for args in v
     ]
     test_name = [name for d in test_name_function for name in d["name"]]
     test_function = [d["code"] for d in test_name_function]
@@ -110,7 +169,7 @@ def example():
     type_array = 'INT'
     test_name = f'basic_{algorithm}_{type_algo}_{type_array}'
 
-    test_txt = create_fn(test_name, algorithm, type_algo, type_array, status, array_in, array_out)
+    test_txt = fn_gen_default(test_name, algorithm, type_algo, type_array, status, array_in, array_out)
 
     list_test_name = [test_name]
     runner_txt = create_group(list_test_name)
@@ -164,7 +223,7 @@ def main():
         # for alg, tp in algorithm_type_list
     ]
 
-    # testes com tamanho do array 21 rerovação
+    # testes com tamanho do array 21 reprovação
     array_in_len21 = list(reversed(range(21)))
     array_out_len21 = sorted(array_in_len21)
     len21 = [
@@ -191,15 +250,35 @@ def main():
         if alg not in ["COUNTING", "RADIX"]
     ]
 
-    # testar limites mínimos aprovado
-    array_in_inf_ok = [1, 0, -2147483647 - 1]
-    array_out_inf_ok = sorted(array_in_inf_ok)
-    inf_limit_ok = [
-        (f'int_limit__{alg}_{tp}_{type_int}_{status_ok}', alg, tp, type_int,
-         status_ok, array_in_inf_ok, array_out_inf_ok)
+    # testar limites mínimos do int aprovado
+    limit_min_ok = [
+        (f'limit_min_ok__{alg}_{tp}_{type_int}_{status_ok}', alg, tp, type_int,
+         status_ok, "MIN")
         for alg, tp in algorithm_type_list
         if alg not in ["COUNTING", "RADIX"]
     ]
+
+    limit_max_ok = [
+        (f'limit_max_ok__{alg}_{tp}_{type_int}_{status_ok}', alg, tp, type_int,
+         status_ok, "MAX")
+        for alg, tp in algorithm_type_list
+        if alg not in ["COUNTING", "RADIX"]
+    ]
+
+    limit_min_err = [
+        (f'limit_min_err__{alg}_{tp}_{type_int}_{status_ok}', alg, tp, type_int,
+         status_ok, "MIN", -1)
+        for alg, tp in algorithm_type_list
+        if alg not in ["COUNTING", "RADIX"]
+    ]
+
+    limit_max_err = [
+        (f'limit_max_err__{alg}_{tp}_{type_int}_{status_ok}', alg, tp, type_int,
+         status_ok, "MAX", +1)
+        for alg, tp in algorithm_type_list
+        if alg not in ["COUNTING", "RADIX"]
+    ]
+
     # testes reprovação com type algo em upper case
     type_algo_upper = [
         (f'type_algo_upper__{alg}_{tp.upper()}_{type_int}_{status_fail}', alg, tp.lower(), type_int,
@@ -223,13 +302,21 @@ def main():
         if tp_err != tp
     ]
 
-    all_tests_list = [
-        basic, len1, len2, len20, len21,
-        size, negative,
-        type_algo_upper, type_algo_lower, type_algo_error
-    ]
+    all_tests_list = {
+        "fn_gen_default": list(itertools.chain(
+            basic, len1, len2, len20, len21,
+            size, negative,
+            type_algo_upper, type_algo_lower, type_algo_error
+        )),
+        "fn_gen_limit": list(itertools.chain(
+            limit_min_ok, limit_max_ok, limit_min_err, limit_max_err
+        ))
+    }
 
-    generate_files(all_tests_list)
+    generate_files(
+        all_tests_list,
+        {"fn_gen_default": fn_gen_default, "fn_gen_limit": fn_gen_limit}
+    )
     print("End")
 
 
