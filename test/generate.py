@@ -232,14 +232,14 @@ def main():
         # for alg, tp in algorithm_type_list
     ]
 
-    # teste com length diferente do tamanho da array_in
+    # teste com length do array_out diferente do tamanho da array_in
     size = [
         (f'size__{default_alg}_{default_type_alg}_{type_int}_{status_ok}', default_alg, default_type_alg, type_int,
          status_ok, array_in_basic, sorted(array_in_basic[:3]))
         # for alg, tp in algorithm_type_list
     ]
 
-    # testar números array co números negativos
+    # testar números array com números negativos
     # "COUNTING", "RADIX" tem erro
     array_in_neg = list(reversed(range(-5, 5)))
     array_out_neg = sorted(array_in_neg)
