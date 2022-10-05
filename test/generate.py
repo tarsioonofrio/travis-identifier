@@ -200,43 +200,43 @@ def main():
     # testes com tamanho do array 1 reprovação
     array_len1 = [1]
     len1 = [
-        (f'len1__{default_alg}_{default_alg}_{type_int}_{status_fail}', default_alg, default_alg, type_int,
+        (f'len1__{alg}_{tp}_{type_int}_{status_fail}', alg, tp, type_int,
          status_fail, array_len1, array_len1)
-        # for alg, tp in algorithm_type_list
+        for alg, tp in algorithm_type_list
     ]
 
     # testes com tamanho do array 2 aprovação
     array_in_len2 = [1, 2]
     array_out_len2 = sorted(array_in_len2)
     len2 = [
-        (f'len2__{default_alg}_{default_type_alg}_{type_int}_{status_ok}', default_alg, default_type_alg, type_int,
+        (f'len2__{alg}_{tp}_{type_int}_{status_fail}', alg, tp, type_int,
          status_ok, array_in_len2, array_out_len2)
-        # for alg, tp in algorithm_type_list
+        for alg, tp in algorithm_type_list
     ]
 
     # testes com tamanho do array 20 aprovação
     array_in_len20 = list(reversed(range(20)))
     array_out_len20 = sorted(array_in_len20)
     len20 = [
-        (f'len20__{default_alg}_{default_type_alg}_{type_int}_{status_ok}', default_alg, default_type_alg, type_int,
+        (f'len20__{alg}_{tp}_{type_int}_{status_fail}', alg, tp, type_int,
          status_ok, array_in_len20, array_out_len20)
-        # for alg, tp in algorithm_type_list
+        for alg, tp in algorithm_type_list
     ]
 
     # testes com tamanho do array 21 reprovação
     array_in_len21 = list(reversed(range(21)))
     array_out_len21 = sorted(array_in_len21)
     len21 = [
-        (f'len21__{default_alg}_{default_type_alg}_{type_int}_{status_ok}', default_alg, default_type_alg, type_int,
-         status_fail, array_in_len21, array_out_len21)
-        # for alg, tp in algorithm_type_list
+        (f'len21__{alg}_{tp}_{type_int}_{status_fail}', alg, tp, type_int,
+         status_fail, array_in_len21, array_in_len21)
+        for alg, tp in algorithm_type_list
     ]
 
     # teste com length do array_out diferente do tamanho da array_in
     size = [
-        (f'size__{default_alg}_{default_type_alg}_{type_int}_{status_ok}', default_alg, default_type_alg, type_int,
+        (f'size__{alg}_{tp}_{type_int}_{status_fail}', alg, tp, type_int,
          status_ok, array_in_basic, sorted(array_in_basic[:3]))
-        # for alg, tp in algorithm_type_list
+        for alg, tp in algorithm_type_list
     ]
 
     # testar números array com números negativos
