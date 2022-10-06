@@ -103,13 +103,13 @@ def fn_gen_limit(test_name, algorithm, type_algo, type_array, status, limit, sum
     head_array = f"TEST(Foo, {name_array})"
     head_status = f"TEST(Foo, {name_status})"
 
-    array_in1 = list(range(5, 0, -1))
-    array_in2 = list(range(0, -5, -1))
-    length = len(array_in1) + len(array_in2) + 1
-    array_in1_str = ", ".join(map(str, array_in1))
-    array_in2_str = ", ".join(map(str, array_in2))
+    array_in_limit1 = list(range(5, 0, -1))
+    array_in_limit2 = list(range(0, -5, -1))
+    length = len(array_in_limit1) + len(array_in_limit2) + 1
+    array_in1_str = ", ".join(map(str, array_in_limit1))
+    array_in2_str = ", ".join(map(str, array_in_limit2))
     array_in_str = f"{array_in1_str}, INT_{limit} + {sum_int}, {array_in2_str}"
-    array_out = sorted(array_in1 + array_in2)
+    array_out = sorted(array_in_limit1 + array_in_limit2)
     array_out_str_ = ", ".join(map(str, array_out))
     array_out_str = (
         f"INT_{limit} + {sum_int}, {array_out_str_}" if limit == "MIN" and sum_int == 0
@@ -141,18 +141,50 @@ def fn_gen_limit(test_name, algorithm, type_algo, type_array, status, limit, sum
     return output
 
 
+def generate_limit_array(limit, sum_int):
+    array_in1 = list(range(5, 0, -1))
+    array_in2 = list(range(0, -5, -1))
+    array_in = array_in1 + [f"INT_{limit} + {sum_int}"] + array_in2
+    array_sorted = sorted(array_in1 + array_in2)
+
+    array_out = (
+        [f"INT_{limit} + {sum_int}"] + array_sorted if limit == "MIN" and sum_int == 0
+        else array_sorted + [f"INT_{limit} + {sum_int}"] if limit == "MAX" and sum_int == 0
+        else [f"INT_{limit} + {sum_int}"] + array_sorted if limit == "MAX" and sum_int == 1
+        else array_sorted + [f"INT_{limit} + {sum_int}"] if limit == "MIN" and sum_int == -1
+        else []
+    )
+
+    return array_in, array_out
+
+
 def generate_files(all_tests, fns):
     # all_tests = [item for sublist in all_tests_list for item in sublist]
 
     test_name_function = [
-        fns[k](* args)
+        fns[k](*args)
         for k, v in all_tests.items()
         for args in v
     ]
+
+    test_table = [
+        (f"{name}_{sufix}; Entrada=(a={arr_in}, length={len(arr_out)}, type={typ}, algorithm={algo}), "
+         f"Saida=(status={status})")
+        if sufix == "array"
+        else (f"{name}_{sufix}; Entrada(a={arr_in}, length={len(arr_out)}, type={typ}, algorithm={algo}), "
+              f"Saida=(array_out={arr_out})")
+        for k, v in all_tests.items()
+        for name, algo, typ, _, status, arr_in, arr_out in v
+        for sufix in ["array", "status"]
+    ]
+    test_table_enum = [f"{i}; {s}" for i, s in enumerate(test_table)]
     test_name = [name for d in test_name_function for name in d["name"]]
     test_function = [d["code"] for d in test_name_function]
     basic_runner = create_group(test_name)
     root_path = Path(__file__).parent
+    with open(root_path / "table.csv", "w") as f:
+        f.write("Número do Teste; Nome do Teste; Casos de Teste\n")
+        f.write("\n".join(test_table_enum))
     with open(root_path / "TestFoo.c", "w") as f:
         f.write(test_head + "\n".join(test_function))
     with open(root_path / "test_runners/TestFoo_Runner.c", "w") as f:
@@ -253,28 +285,28 @@ def main():
     # testar limites mínimos do int aprovado
     limit_min_ok = [
         (f'limit_min_ok__{alg}_{tp}_{type_int}_{status_ok}', alg, tp, type_int,
-         status_ok, "MIN")
+         status_ok, *generate_limit_array("MIN", 0))
         for alg, tp in algorithm_type_list
         if alg not in ["COUNTING", "RADIX"]
     ]
 
     limit_max_ok = [
         (f'limit_max_ok__{alg}_{tp}_{type_int}_{status_ok}', alg, tp, type_int,
-         status_ok, "MAX")
+         status_ok, *generate_limit_array("MAX", 0))
         for alg, tp in algorithm_type_list
         if alg not in ["COUNTING", "RADIX"]
     ]
 
     limit_min_err = [
         (f'limit_min_err__{alg}_{tp}_{type_int}_{status_ok}', alg, tp, type_int,
-         status_ok, "MIN", -1)
+         status_ok, *generate_limit_array("MIN", -1))
         for alg, tp in algorithm_type_list
         if alg not in ["COUNTING", "RADIX"]
     ]
 
     limit_max_err = [
         (f'limit_max_err__{alg}_{tp}_{type_int}_{status_ok}', alg, tp, type_int,
-         status_ok, "MAX", +1)
+         status_ok, *generate_limit_array("MIN", +1))
         for alg, tp in algorithm_type_list
         if alg not in ["COUNTING", "RADIX"]
     ]
@@ -308,14 +340,11 @@ def main():
             size, negative,
             type_algo_upper, type_algo_lower, type_algo_error
         )),
-        "fn_gen_limit": list(itertools.chain(
-            limit_min_ok, limit_max_ok, limit_min_err, limit_max_err
-        ))
     }
 
     generate_files(
         all_tests_list,
-        {"fn_gen_default": fn_gen_default, "fn_gen_limit": fn_gen_limit}
+        {"fn_gen_default": fn_gen_default}
     )
     print("End")
 

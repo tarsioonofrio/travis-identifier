@@ -51,7 +51,9 @@ CFLAGS += -Wundef
 CFLAGS += -Wold-style-definition
 
 TARGET_BASE1=all_tests
+TARGET_BASE2=all_tests2
 TARGET1 = $(TARGET_BASE1)$(TARGET_EXTENSION)
+TARGET2 = $(TARGET_BASE2)$(TARGET_EXTENSION)
 SRC_FILES1=\
   $(UNITY_ROOT)/src/unity.c \
   $(UNITY_ROOT)/extras/fixture/src/unity_fixture.c \
@@ -73,13 +75,13 @@ sanitize:
 cov:
 	$(C_COMPILER) $(CFLAGS) -fprofile-arcs -ftest-coverage $(INC_DIRS) $(SRC_FILES1) -o $(TARGET1)
 	./$(TARGET1) -v
-	gcov -b $(SRC_FILES1)
+	gcov -b $(TARGET1)
 	
 valgrind:
 	gcc -g -Wall -Wfatal-errors $(INC_DIRS) $(SRC_FILES1) -o $(TARGET1)
 	valgrind --leak-check=full --show-leak-kinds=all ./$(TARGET1) -v 
 	
-cppcheck: 
+cppcheck:
 	cppcheck --enable=all --suppress=missingIncludeSystem $(SRC_FILES1)
 
 run:
@@ -87,5 +89,7 @@ run:
 
 clean:
 	$(CLEANUP) $(TARGET1)
+	rm -f *.gcda
+	rm -f *.gcno
 #	$(CLEANUP) $(TARGET)
 
