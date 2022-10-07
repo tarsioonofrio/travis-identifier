@@ -13,7 +13,8 @@ int sort(int* a, int length, char* type, int algorithm) {
                 if (!strcmp(type,"On"))
                     counting_sort(s, length);
                 else
-                    status = 1;
+                    status = 0;
+//                     status = 1;
                 break;
             case RADIX:
                 if (!strcmp(type,"On"))
