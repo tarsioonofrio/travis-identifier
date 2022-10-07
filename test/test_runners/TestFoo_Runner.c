@@ -115,6 +115,10 @@ TEST_GROUP_RUNNER(Foo)
 	RUN_TEST_CASE(Foo, repeat__MERGE_Onlogn_INT_0_status);
 	RUN_TEST_CASE(Foo, repeat__QUICK_Onlogn_INT_0_array);
 	RUN_TEST_CASE(Foo, repeat__QUICK_Onlogn_INT_0_status);
+	RUN_TEST_CASE(Foo, negative__COUNTING_On_INT_0_array);
+	RUN_TEST_CASE(Foo, negative__COUNTING_On_INT_0_status);
+	RUN_TEST_CASE(Foo, negative__RADIX_On_INT_0_array);
+	RUN_TEST_CASE(Foo, negative__RADIX_On_INT_0_status);
 	RUN_TEST_CASE(Foo, negative__BUBBLE_On2_INT_0_array);
 	RUN_TEST_CASE(Foo, negative__BUBBLE_On2_INT_0_status);
 	RUN_TEST_CASE(Foo, negative__INSERTION_On2_INT_0_array);
@@ -127,6 +131,10 @@ TEST_GROUP_RUNNER(Foo)
 	RUN_TEST_CASE(Foo, negative__MERGE_Onlogn_INT_0_status);
 	RUN_TEST_CASE(Foo, negative__QUICK_Onlogn_INT_0_array);
 	RUN_TEST_CASE(Foo, negative__QUICK_Onlogn_INT_0_status);
+	RUN_TEST_CASE(Foo, limit_min_ok__COUNTING_On_INT_0_array);
+	RUN_TEST_CASE(Foo, limit_min_ok__COUNTING_On_INT_0_status);
+	RUN_TEST_CASE(Foo, limit_min_ok__RADIX_On_INT_0_array);
+	RUN_TEST_CASE(Foo, limit_min_ok__RADIX_On_INT_0_status);
 	RUN_TEST_CASE(Foo, limit_min_ok__BUBBLE_On2_INT_0_array);
 	RUN_TEST_CASE(Foo, limit_min_ok__BUBBLE_On2_INT_0_status);
 	RUN_TEST_CASE(Foo, limit_min_ok__INSERTION_On2_INT_0_array);
@@ -139,6 +147,10 @@ TEST_GROUP_RUNNER(Foo)
 	RUN_TEST_CASE(Foo, limit_min_ok__MERGE_Onlogn_INT_0_status);
 	RUN_TEST_CASE(Foo, limit_min_ok__QUICK_Onlogn_INT_0_array);
 	RUN_TEST_CASE(Foo, limit_min_ok__QUICK_Onlogn_INT_0_status);
+	RUN_TEST_CASE(Foo, limit_max_ok__COUNTING_On_INT_0_array);
+	RUN_TEST_CASE(Foo, limit_max_ok__COUNTING_On_INT_0_status);
+	RUN_TEST_CASE(Foo, limit_max_ok__RADIX_On_INT_0_array);
+	RUN_TEST_CASE(Foo, limit_max_ok__RADIX_On_INT_0_status);
 	RUN_TEST_CASE(Foo, limit_max_ok__BUBBLE_On2_INT_0_array);
 	RUN_TEST_CASE(Foo, limit_max_ok__BUBBLE_On2_INT_0_status);
 	RUN_TEST_CASE(Foo, limit_max_ok__INSERTION_On2_INT_0_array);
@@ -151,6 +163,10 @@ TEST_GROUP_RUNNER(Foo)
 	RUN_TEST_CASE(Foo, limit_max_ok__MERGE_Onlogn_INT_0_status);
 	RUN_TEST_CASE(Foo, limit_max_ok__QUICK_Onlogn_INT_0_array);
 	RUN_TEST_CASE(Foo, limit_max_ok__QUICK_Onlogn_INT_0_status);
+	RUN_TEST_CASE(Foo, limit_min_err__COUNTING_On_INT_0_array);
+	RUN_TEST_CASE(Foo, limit_min_err__COUNTING_On_INT_0_status);
+	RUN_TEST_CASE(Foo, limit_min_err__RADIX_On_INT_0_array);
+	RUN_TEST_CASE(Foo, limit_min_err__RADIX_On_INT_0_status);
 	RUN_TEST_CASE(Foo, limit_min_err__BUBBLE_On2_INT_0_array);
 	RUN_TEST_CASE(Foo, limit_min_err__BUBBLE_On2_INT_0_status);
 	RUN_TEST_CASE(Foo, limit_min_err__INSERTION_On2_INT_0_array);
@@ -163,6 +179,10 @@ TEST_GROUP_RUNNER(Foo)
 	RUN_TEST_CASE(Foo, limit_min_err__MERGE_Onlogn_INT_0_status);
 	RUN_TEST_CASE(Foo, limit_min_err__QUICK_Onlogn_INT_0_array);
 	RUN_TEST_CASE(Foo, limit_min_err__QUICK_Onlogn_INT_0_status);
+	RUN_TEST_CASE(Foo, limit_max_err__COUNTING_On_INT_0_array);
+	RUN_TEST_CASE(Foo, limit_max_err__COUNTING_On_INT_0_status);
+	RUN_TEST_CASE(Foo, limit_max_err__RADIX_On_INT_0_array);
+	RUN_TEST_CASE(Foo, limit_max_err__RADIX_On_INT_0_status);
 	RUN_TEST_CASE(Foo, limit_max_err__BUBBLE_On2_INT_0_array);
 	RUN_TEST_CASE(Foo, limit_max_err__BUBBLE_On2_INT_0_status);
 	RUN_TEST_CASE(Foo, limit_max_err__INSERTION_On2_INT_0_array);
