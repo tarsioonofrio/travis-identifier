@@ -257,7 +257,6 @@ def main():
 
     # testes com tamanho do array 21 reprovação
     array_in_len21 = list(reversed(range(21)))
-    array_out_len21 = sorted(array_in_len21)
     len21 = [
         (f'len21__{alg}_{tp}_{type_int}_{status_fail}', alg, tp, type_int,
          status_fail, array_in_len21, array_in_len21)
@@ -306,7 +305,7 @@ def main():
 
     limit_max_err = [
         (f'limit_max_err__{alg}_{tp}_{type_int}_{status_ok}', alg, tp, type_int,
-         status_ok, *generate_limit_array("MIN", +1))
+         status_ok, *generate_limit_array("MAX", +1))
         for alg, tp in algorithm_type_list
         if alg not in ["COUNTING", "RADIX"]
     ]
@@ -338,6 +337,7 @@ def main():
         "fn_gen_default": list(itertools.chain(
             basic, len1, len2, len20, len21,
             size, negative,
+            limit_min_ok, limit_max_ok, limit_min_err, limit_max_err,
             type_algo_upper, type_algo_lower, type_algo_error
         )),
     }
