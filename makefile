@@ -75,7 +75,11 @@ sanitize:
 cov:
 	$(C_COMPILER) $(CFLAGS) -fprofile-arcs -ftest-coverage $(INC_DIRS) $(SRC_FILES1) -o $(TARGET1)
 	./$(TARGET1) -v
-	gcov -b $(TARGET1)
+	mv *.gc* src/
+#	mv src/unity.* Unity/src/
+#	mv src/unity_fixture.* Unity/extras/fixture/src/
+	mv src/all_tests.* test/test_runners/
+	gcov -b $(SRC_FILES1)
 	
 valgrind:
 	gcc -g -Wall -Wfatal-errors $(INC_DIRS) $(SRC_FILES1) -o $(TARGET1)
@@ -91,5 +95,9 @@ clean:
 	$(CLEANUP) $(TARGET1)
 	rm -f *.gcda
 	rm -f *.gcno
+	rm -f *.gcov
+	rm -f src/*.gcda
+	rm -f src/*.gcno
+	rm -f src/*.gcov
 #	$(CLEANUP) $(TARGET)
 
