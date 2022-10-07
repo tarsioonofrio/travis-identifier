@@ -287,7 +287,7 @@ def main():
         (f'negative__{alg}_{tp}_{type_int}_{status_ok}', alg, tp, type_int,
          status_ok, array_in_neg, array_out_neg)
         for alg, tp in algorithm_type_list
-        # if alg not in ["COUNTING", "RADIX"]
+        if alg not in ["COUNTING", "RADIX"]
     ]
 
     # testar limites mínimos do int aprovado
@@ -295,28 +295,28 @@ def main():
         (f'limit_min_ok__{alg}_{tp}_{type_int}_{status_ok}', alg, tp, type_int,
          status_ok, *generate_limit_array("MIN", 0))
         for alg, tp in algorithm_type_list
-        # if alg not in ["COUNTING", "RADIX"]
+        if alg not in ["COUNTING", "RADIX"]
     ]
 
     limit_max_ok = [
         (f'limit_max_ok__{alg}_{tp}_{type_int}_{status_ok}', alg, tp, type_int,
          status_ok, *generate_limit_array("MAX", 0))
         for alg, tp in algorithm_type_list
-        # if alg not in ["COUNTING", "RADIX"]
+        if alg not in ["COUNTING", "RADIX"]
     ]
 
     limit_min_err = [
         (f'limit_min_err__{alg}_{tp}_{type_int}_{status_ok}', alg, tp, type_int,
          status_ok, *generate_limit_array("MIN", -1))
         for alg, tp in algorithm_type_list
-        # if alg not in ["COUNTING", "RADIX"]
+        if alg not in ["COUNTING", "RADIX"]
     ]
 
     limit_max_err = [
         (f'limit_max_err__{alg}_{tp}_{type_int}_{status_ok}', alg, tp, type_int,
          status_ok, *generate_limit_array("MAX", +1))
         for alg, tp in algorithm_type_list
-        # if alg not in ["COUNTING", "RADIX"]
+        if alg not in ["COUNTING", "RADIX"]
     ]
 
     # testes reprovação com type algo em upper case
