@@ -97,5 +97,8 @@ clean:
 	rm -f src/*.gcda
 	rm -f src/*.gcno
 	rm -f src/*.gcov
+	rm -f test/test_runners/*.gcda
+	rm -f test/test_runners/*.gcno
+	rm -f test/test_runners/*.gcov
 #	$(CLEANUP) $(TARGET)
 
