@@ -270,6 +270,15 @@ def main():
         for alg, tp in algorithm_type_list
     ]
 
+    # entradas repetidas
+    array_in_repeat = [5, 4, 3, 3, 3, 2, 1, 0]
+    array_out_repeat = sorted(array_in_repeat)
+    repeat = [
+        (f'repeat__{alg}_{tp}_{type_int}_{status_ok}', alg, tp, type_int,
+         status_ok, array_in_repeat, array_out_repeat)
+        for alg, tp in algorithm_type_list
+    ]
+
     # testar números array com números negativos
     # "COUNTING", "RADIX" tem erro
     array_in_neg = list(reversed(range(-5, 5)))
@@ -335,7 +344,7 @@ def main():
 
     all_tests_list = {
         "fn_gen_default": list(itertools.chain(
-            basic, len1, len2, len20, len21, size,
+            basic, len1, len2, len20, len21, size, repeat,
             negative, limit_min_ok, limit_max_ok, limit_min_err, limit_max_err,
             type_algo_upper, type_algo_lower, type_algo_error
         )),
