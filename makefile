@@ -75,7 +75,9 @@ sanitize:
 cov:
 	$(C_COMPILER) $(CFLAGS) -fprofile-arcs -ftest-coverage $(INC_DIRS) $(SRC_FILES1) -o $(TARGET1)
 	./$(TARGET1) -v
-	gcov -b $(TARGET1)
+	mv *.gc* src/
+	mv all_tests.* ../
+	gcov -b $(SRC_FILES1)
 	
 valgrind:
 	gcc -g -Wall -Wfatal-errors $(INC_DIRS) $(SRC_FILES1) -o $(TARGET1)
